@@ -17,12 +17,10 @@ int main(int argc, char **argv)
 }
   struct dirent* entry;
   while ((entry = readdir(dir)) != NULL) {
-    printf("%s\n", entry->dirname)
+    printf("%s\n", entry->d_name);
   }
-  
   // Repeatly read and print entries
-
   // Close directory
-  closedir(opened)
+  closedir(dir);
   return 0;
 }
