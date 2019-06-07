@@ -16,12 +16,18 @@ int main(int argc, char **argv)
     exit(1);
 }
   struct dirent* entry;
+  struct stat dir;
   while ((entry = readdir(dir)) != NULL) {
-    struct stat buf = malloc(sizeof(struct stat));
-    stat(entry, &buf);
+    // stat("./", &entry);
+    // printf("size %lld\n", entry.st_size);
     printf("%s\n", entry->d_name);
-    printf("size %lld\n", buf.st_size);
   }
+
+  // struct stat buf;
+  //   while ((buf = readdir(dir)) != NULL) {
+  //     stat("./", &buf);
+  //     printf("size %lld\n", buf.st_size);
+  //   }
   // Repeatly read and print entries
   // Close directory
   closedir(dir);
