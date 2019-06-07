@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
@@ -16,10 +17,10 @@ int main(int argc, char **argv)
     exit(1);
 }
   struct dirent* entry;
-  struct stat dir;
+  struct stat buf;
   while ((entry = readdir(dir)) != NULL) {
-    // stat("./", &entry);
-    // printf("size %lld\n", entry.st_size);
+    stat("./", &buf);
+    printf("size %lld\n", buf.st_size);
     printf("%s\n", entry->d_name);
   }
 
