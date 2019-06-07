@@ -7,11 +7,13 @@
 int main(int argc, char **argv)
 {
   // Parse command line
-  void opened = DIR *opendir(char *path);
+  // void opened = DIR *opendir("./");
+  // char opened = opendir("./");
+  DIR* dir = opendir("./");
   // Open directory
-  if (!opened) {
-    fprintf(sderr, "Error Occured \n");
-    exit();
+  if (!dir) {
+    fprintf(stderr, "Error Occured \n");
+    exit(1);
 }
   struct dirent *readdir(opened)
   // Repeatly read and print entries
