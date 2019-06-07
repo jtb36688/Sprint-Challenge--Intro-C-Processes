@@ -17,7 +17,10 @@ int main(int argc, char **argv)
 }
   struct dirent* entry;
   while ((entry = readdir(dir)) != NULL) {
+    struct stat buf = malloc(sizeof(struct stat));
+    stat(entry, &buf);
     printf("%s\n", entry->d_name);
+    printf("size %lld\n", buf.st_size);
   }
   // Repeatly read and print entries
   // Close directory
