@@ -15,7 +15,11 @@ int main(int argc, char **argv)
     fprintf(stderr, "Error Occured \n");
     exit(1);
 }
-  struct dirent *readdir(opened)
+  struct dirent* entry;
+  while ((entry = readdir(dir)) != NULL) {
+    printf("%s\n", entry->dirname)
+  }
+  
   // Repeatly read and print entries
 
   // Close directory
