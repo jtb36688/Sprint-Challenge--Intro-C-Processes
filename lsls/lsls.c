@@ -1,18 +1,43 @@
 #include <stdio.h>
 #include <dirent.h>
+#include <sys/stat.h>
 
 /**
  * Main
  */
-int main(int argc, char **argv)
+int main(int argc, char *
+*argv)
 {
   // Parse command line
 
-  // Open directory
+if (!argv[1]){
+  fprintf(stderr, "This command expects an argument - provide a directory ./lsls -directoryname-");
+  exit(1);
+}
+if (argv[2]) {
+  fprintf(stderr, "This command only takes one argument \n");
+  exit(1);
+}
+DIR* dir = opendir(argv[1]);
+if (!dir) {
+    fprintf(stderr, "Error Occured \n");
+    exit(1);
+}
+  struct dirent* entry;
+  struct stat buf;
+  while ((entry = readdir(dir)) != NULL) {
+    stat(entry->d_name, &buf);
+    printf("size %lld\n", buf.st_size);
+    printf("%s\n", entry->d_name);
+  }
 
+  // struct stat buf;
+  //   while ((buf = readdir(dir)) != NULL) {
+  //     stat("./", &buf);
+  //     printf("size %lld\n", buf.st_size);
+  //   }
   // Repeatly read and print entries
-
   // Close directory
-
+  closedir(dir);
   return 0;
 }
